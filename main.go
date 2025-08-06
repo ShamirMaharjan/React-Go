@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/gofiber/fiber/v3"
+)
+
+type Todo struct {
+	ID        int    `json:"id"`
+	Completed bool   `json:"completed"`
+	Body      string `json:"body"`
+}
+
+func main() {
+	fmt.Println("Hello Worlds dev")
+
+	app := fiber.New()
+
+	app.Get("/", func(c fiber.Ctx) error {
+		return c.Status(200).JSON(fiber.Map{"msg": "hello world"})
+	})
+
+	log.Fatal(app.Listen(":3000"))
+}
